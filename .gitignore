@@ -3,5 +3,5 @@ node_modules
 dist
 dist-ssr
 *.local
-package-lock
-package
+package-lock.*
+package.*

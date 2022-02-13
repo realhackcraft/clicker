@@ -1,2 +1,2 @@
 # clicker
-Please go here to play:
+Please go [here](https://realhackcraft.github.io/clicker) to play!

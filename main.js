@@ -24,9 +24,6 @@ megaautoprintercost = 800;
 
 function addMoney(amount) {
   balance += amount;
-  if (balance >= cap) {
-    balance = cap; // prevents the user from getting more than the max by cheating
-  }
 }
 
 function getNewCard(amount) {

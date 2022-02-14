@@ -11,16 +11,11 @@
 <body>
   <div id="display">
     <h1>Clicker</h1>
-    <p>Money:</p>
-    <p id="money"></p>
-    <p>Max Money:</p>
-    <p id="max"></p>
-    <p>Autoprinter:</p>
-    <p id="autoprinter"></p>
-    <p>Mega Autoprinter:</p>
-    <p id="megaautoprinter"></p>
-    <p>Auto Money/Sec:</p>
-    <p id="automoney"></p>
+    <p>Money: <span id="money"></span></p>
+    <p>Max Money: <span id="max"></span></p>
+    <p>Autoprinter: <span id="autoprinter"></span></p>
+    <p>Mega Autoprinter: <span id="megaautoprinter"></span></p>
+    <p>Auto Money/Sec: <span id="automoney"></span></p>
   </div>
   <br>
   <div id="operations">
@@ -29,17 +24,23 @@
       <p id="efficiency"></p>
     </div>
     <div class="button">
-    <button onclick="getNewCard(1)">Buy New Card</button>
-      <p>cost: $200</p>
+      <button onclick="getNewCard(1)">Buy New Card</button>
+      <span id="cardcost">cost: $200</span>
+      </div>
+    <br>
+    <div class="button">
+      <button onclick="getAutoprinter(1)">Buy Autoprinter</button>
+      <span id="autoprintercost">cost: $400</span>
+      </div>
+    <br>
+    <div class="button">
+      <button onclick="getMegaAutoprinter(1)">Buy Mega Autoprinter</button>
+      <span id="megaautoprintercost">cost: $800</span>
       </div>
       <br>
       <div class="button">
-        <button onclick="getAutoprinter(1)">Buy Autoprinter</button>
-        <p>cost: $400</p>
-      </div>
-      <div class="button">
-        <button onclick="getMegaAutoprinter(1)">Buy Mega Autoprinter</button>
-        <p>cost: $800</p>
+        <button id="mass" onclick="getMassPurchase()">Buy Mass Purchase</button>
+        <span>cost: $100,000,000,000</span>
       </div>
   </div>
   <h1>VOLENTEER NEEDED! CONTACT <a href="mailto:hackcraft_@hotmail.com">ME</a> please</h1>

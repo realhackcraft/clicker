@@ -2,6 +2,7 @@ money = document.getElementById('money');
 money.innerHTML = 0;
 max = document.getElementById('max');
 max.innerHTML = "Max money: $200";
+mass = document.getElementById('mass');
 autoprinter = document.getElementById('autoprinter');
 automoney = document.getElementById('automoney');
 megaautoprinter = document.getElementById('megaautoprinter');
@@ -17,6 +18,9 @@ passiverev = 0;
 
 interval = 100;
 autointerval = 1000;
+cardcost = 200;
+autoprintercost = 400;
+megaautoprintercost = 800;
 
 function addMoney(amount) {
   balance += amount;
@@ -26,31 +30,42 @@ function addMoney(amount) {
 }
 
 function getNewCard(amount) {
-  if (balance >= 200 * amount) {
-    balance -= 200 * amount;
+  if (balance >= cardcost * amount) {
+    balance -= cardcost * amount;
+    cardcost = Math.round(cardcost * 1.15);
+    document.getElementById('cardcost').innerHTML = "cost: $" + cardcost;
     cap += 200 * amount;
-  } else {
-    return;
   }
 }
 
 function getAutoprinter(amount) {
-  if (balance >= 400 * amount) {
-    balance -= 400 * amount;
+  if (balance >= autoprintercost * amount) {
+    balance -= autoprintercost * amount;
+    autoprintercost = Math.round(autoprintercost * 1.15);
+    document.getElementById('autoprintercost').innerHTML = "cost: $" + autoprintercost;
     autoprintercount++;
-  } else {
-    return;
   }
 }
 
 function getMegaAutoprinter(amount) {
-  if (balance >= 800 * amount) {
-    balance -= 800 * amount;
+  if (balance >= megaautoprintercost * amount) {
+    balance -= megaautoprintercost * amount;
+    megaautoprintercost = Math.round(megaautoprintercost * 1.15);
+    document.getElementById('megaautoprintercost').innerHTML = "cost: $" + megaautoprintercost;
     megaautoprintercount++;
-    megaautoprinter.innerHTML = megaautoprintercount;
-  } else {
-    return;
   }
+}
+
+function getMassPurchase() {
+  if (balance >= 100000000000) {
+    balance -= 100000000000;
+    mass.innerHTML = "Mass Purchase";
+    mass.onclick = massPurchase();
+  }
+}
+
+function massPurchase() {
+  prompt("What Do You Want To Buy?")
 }
 
 function autoAddMoney() {

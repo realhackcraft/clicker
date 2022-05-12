@@ -1,3 +1,5 @@
+let package = JSON.parse(require('./package.json'));
+document.getElementById('version').innerHTML = package.version;
 money = document.getElementById('money');
 money.innerHTML = 0;
 max = document.getElementById('max');
@@ -22,34 +24,42 @@ cardcost = 200;
 autoprintercost = 400;
 megaautoprintercost = 800;
 
+
 function addMoney(amount) {
   balance += amount;
 }
 
 function getNewCard(amount) {
-  if (balance >= cardcost * amount) {
-    balance -= cardcost * amount;
-    cardcost = Math.round(cardcost * 1.15);
-    document.getElementById('cardcost').innerHTML = "cost: $" + cardcost;
-    cap += 200 * amount;
+  // For loop so that it is easier to read
+  for (let index = 0; index < amount; index++) {
+    if (balance >= cardcost) {
+      balance -= cardcost;
+      cardcost = Math.round(cardcost * 1.15);
+      document.getElementById('cardcost').innerHTML = "cost: $" + cardcost;
+      cap += 200 * 1.5;
+    }
   }
 }
 
 function getAutoprinter(amount) {
-  if (balance >= autoprintercost * amount) {
-    balance -= autoprintercost * amount;
-    autoprintercost = Math.round(autoprintercost * 1.15);
-    document.getElementById('autoprintercost').innerHTML = "cost: $" + autoprintercost;
-    autoprintercount++;
+  for (let index = 0; index < amount; index++) {
+    if (balance >= autoprintercost) {
+      balance -= autoprintercost;
+      autoprintercost = Math.round(autoprintercost * 1.15);
+      document.getElementById('autoprintercost').innerHTML = "cost: $" + autoprintercost;
+      autoprintercount++;
+    }
   }
 }
 
 function getMegaAutoprinter(amount) {
-  if (balance >= megaautoprintercost * amount) {
-    balance -= megaautoprintercost * amount;
-    megaautoprintercost = Math.round(megaautoprintercost * 1.15);
-    document.getElementById('megaautoprintercost').innerHTML = "cost: $" + megaautoprintercost;
-    megaautoprintercount++;
+  for (let index = 0; index < amount; index++) {
+    if (balance >= megaautoprintercost) {
+      balance -= megaautoprintercost;
+      megaautoprintercost = Math.round(megaautoprintercost * 1.15);
+      document.getElementById('megaautoprintercost').innerHTML = "cost: $" + megaautoprintercost;
+      megaautoprintercount++;
+    }
   }
 }
 
@@ -58,15 +68,21 @@ function getMassPurchase() {
     balance -= 100000000000;
     mass.innerHTML = "Mass Purchase";
     mass.onclick = massPurchase();
+
   }
 }
 
 function massPurchase() {
-  prompt("What Do You Want To Buy?")
-}
+  let type = prompt("What Do You Want To Buy?", "Autoprinter");
+  let amount = prompt("How Much Do You Want To Buy?", "10");
 
-function autoAddMoney() {
-  balance += autoprintercount + (megaautoprintercount * 5);
+  if (type.toLowerCase = "autoprinter") {
+    if (balance - amount * autoprintercost >= 0) {
+      getAutoprinter(amount);
+    } else {
+      alert("You Don\'t Have Enogth Money To Buy That Much!");
+    }
+  }
 }
 
 function update() {
@@ -83,6 +99,10 @@ function update() {
   efficiencydisplay.innerHTML = "+" + efficiency + " per click";
 }
 
+function autoAddMoney() {
+  balance += autoprintercount + (megaautoprintercount * 5);
+}
 
-setInterval(update, interval); // automation later
+
+setInterval(update, interval);
 setInterval(autoAddMoney, autointerval);
